@@ -1,0 +1,35 @@
+<div class="container">
+  <mat-card>
+    <mat-card-title>Editar Pessoa</mat-card-title>
+
+    <form class="create-article-form" #form="ngForm" (ngSubmit)="onSubmit(form.value)" autocomplete="off" *ngIf="!!pessoa">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Nome" name="nome" [ngModel]="pessoa.nome">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput placeholder="CPF" name="cpf" [ngModel]="pessoa.cpf">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput type="number" placeholder="Idade" name="idade" [ngModel]="pessoa.idade">
+      </mat-form-field>
+
+      <div>
+        <mat-form-field class="full-width">
+          <mat-select placeholder="Cidade" name="id_cidade" [ngModel]="pessoa.id_cidade">
+            <mat-option *ngFor="let item of cidades;" [value]="item.id">
+              {{ item.nome }} / {{item.uf}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="row-buttons">
+        <span class="spacer"></span>
+        <a routerLink="/lists" class="form-btn" mat-button>Voltar</a>
+        <button type="submit" class="form-btn" mat-raised-button color="accent">Editar</button>
+      </div>
+    </form>
+  </mat-card>
+</div>

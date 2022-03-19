@@ -1,0 +1,21 @@
+<div class="container">
+  <mat-card>
+    <mat-card-title>Editar cidade</mat-card-title>
+
+    <form class="create-article-form" #form="ngForm" (ngSubmit)="onSubmit(form.value)" autocomplete="off" *ngIf="!!cidade">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Nome" name="nome" [ngModel]="cidade.nome">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput placeholder="UF" name="uf" [ngModel]="cidade.uf">
+      </mat-form-field>
+
+      <div class="row-buttons">
+        <span class="spacer"></span>
+        <a class="form-btn" mat-button (click)="voltar()">Voltar</a>
+        <button type="submit" class="form-btn" mat-raised-button color="accent">Editar</button>
+      </div>
+    </form>
+  </mat-card>
+</div>
