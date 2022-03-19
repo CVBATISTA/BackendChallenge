@@ -1,4 +1,5 @@
-using Example.Application.ExampleService.Service;
+using Example.Application.CidadeService.Service;
+using Example.Application.PessoaService.Service;
 using Example.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,8 +13,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IExampleService, ExampleService>();
+builder.Services.AddScoped<ICidadeService, CidadeService>();
+builder.Services.AddScoped<IPessoaService, PessoaService>();
 builder.Services.AddDbContext<ExampleContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddCors();
 
 var app = builder.Build();
 
@@ -31,7 +34,7 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.UseAuthorization();
-
+app.UseCors(o => { o.AllowAnyOrigin(); o.AllowAnyMethod(); o.AllowAnyHeader(); });
 app.MapControllers();
 
 app.Run();
